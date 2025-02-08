@@ -1,3 +1,5 @@
+import yaml
+
 # Scrapy settings for istoresumido project
 #
 # For simplicity, this file contains only settings considered important or
@@ -6,6 +8,12 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+
+# To know the final output folder defined in the yaml file
+file_path = '../config.yaml'
+with open(file_path, 'r') as file:
+    config = yaml.safe_load(file)
+
 
 BOT_NAME = "istoresumido"
 
@@ -17,7 +25,7 @@ NEWSPIDER_MODULE = "istoresumido.spiders"
 #USER_AGENT = "istoresumido (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False # has a download delay, so it can behave like a human
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -25,9 +33,11 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 3 # avoid overloading the server
+FILES_STORE = f"../{config['downloads_folder']}" 
+
 # The download delay setting will honor only one of:
-#CONCURRENT_REQUESTS_PER_DOMAIN = 16
+# CONCURRENT_REQUESTS_PER_DOMAIN = 4
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
@@ -62,9 +72,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "istoresumido.pipelines.IstoresumidoPipeline": 300,
-#}
+ITEM_PIPELINES = {
+   "istoresumido.pipelines.IstoresumidoPipeline": 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -75,7 +85,7 @@ ROBOTSTXT_OBEY = True
 #AUTOTHROTTLE_MAX_DELAY = 60
 # The average number of requests Scrapy should be sending in parallel to
 # each remote server
-#AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
+AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
 # Enable showing throttling stats for every response received:
 #AUTOTHROTTLE_DEBUG = False
 

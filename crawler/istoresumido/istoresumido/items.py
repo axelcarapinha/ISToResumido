@@ -4,9 +4,16 @@
 # https://docs.scrapy.org/en/latest/topics/items.html
 
 import scrapy
+import os 
+from scrapy.loader.processors import MapCompose, TakeFirst
 
+def remove_extension(value):
+    return os.path.splitext(value)[0]
 
 class IstoresumidoItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    file_urls = scrapy.Field()  # used URLs to be downloaded
+    files = scrapy.Field()      # where files will be stored
+    file_name = scrapy.Field(
+        input_processor = MapCompose(remove_extension),
+        output_processor = TakeFirst()
+    )  
