@@ -8,7 +8,7 @@ import os
 from scrapy.loader.processors import MapCompose, TakeFirst
 
 def remove_extension(value):
-    return os.path.splitext(value)[0]
+    return os.path.splitext(value)[0] #TODO avoid this magic number
 
 class IstoresumidoItem(scrapy.Item):
     file_urls = scrapy.Field()  # used URLs to be downloaded

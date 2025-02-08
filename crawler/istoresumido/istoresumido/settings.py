@@ -33,6 +33,7 @@ ROBOTSTXT_OBEY = False # has a download delay, so it can behave like a human
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
+DOWNLOAD_TIMEOUT = 30 #TODO remove this
 DOWNLOAD_DELAY = 3 # avoid overloading the server
 FILES_STORE = f"../{config['downloads_folder']}" 
 
@@ -73,7 +74,7 @@ FILES_STORE = f"../{config['downloads_folder']}"
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   "istoresumido.pipelines.IstoresumidoPipeline": 300,
+   "istoresumido.pipelines.IstoresumidoPipeline": 1 # Explaining: name_of_project.pipelines.class_name_from_pipelines_file
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

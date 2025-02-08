@@ -80,7 +80,6 @@ class DocumentSpider(scrapy.Spider):
         urls_sidebar.append(self.START_URL) # considers PDFs that may already be in the home page (and NOT in subpages)
         for url in urls_sidebar:
             yield scrapy.Request(url=url, callback=self.extract_file_urls)
-
     
     # Downloads all the available files from the provided URL
     def extract_file_urls(self, response):
@@ -94,13 +93,14 @@ class DocumentSpider(scrapy.Spider):
 
         # Filter the URLs from PDF files
         for url in response.xpath(self.XPATH_FILES):
-            file_url = url.xpath("@href").get()
+            file_url = url.xpath("@href").get() #TODO CONTINUE FROM HERE
             if file_url:
+                file_url = urljoin(response.url, file_url)
                 filename = file_url.split('/')[-1]
                 
                 # Download the files using the FilesPipeline (Scrapy's default functionality)
                 self.logger.info(f"File URL found: {file_url}")
-                loader = ItemLoader(item=IstoresumidoItem(), selector=file_url)
+                loader = ItemLoader(item=IstoresumidoItem(), selector=response) #TODO CONTINUE FROM HERE
                 loader.add_value('file_name', filename)
                 loader.add_value('file_urls', file_url)
 
