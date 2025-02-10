@@ -1,0 +1,4 @@
+# For a centralized choice of the 3 models involved in this part:
+  # 1. model for the embeddings
+  # 2. model for actual prompt
+  # 3. model to evaluate the response

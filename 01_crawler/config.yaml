@@ -1,0 +1,5 @@
+urls:
+  - 'https://conselhopedagogico.tecnico.ulisboa.pt/'
+  - 'https://tecnico.ulisboa.pt/pt/'
+
+downloads_folder: '00_downloads' # folder used for the file downloads
