@@ -101,10 +101,6 @@ export default function ChatInterface() {
         <h1 className="text-2xl font-bold">ISToresumido</h1>
 
         <div className="text-sm text-gray-600">
-          Free Time Remaining: <span className="text-[#009fe3] font-medium">{freeTime} minutes</span>
-        </div>
-
-        <div className="text-sm text-gray-600">
           Questions Remaining:{" "}
           <span className="text-[#009fe3] font-medium">{Math.max(0, FREE_QUESTIONS_LIMIT - questionCount)}</span>
         </div>

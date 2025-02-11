@@ -1,4 +1,5 @@
 flask
+flask-cors # otherwise, the response from the LLM won't appear in the browser when using localhost
 
 aiohappyeyeballs==2.4.6
 aiohttp==3.11.12

@@ -1,9 +1,14 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from RAGeneration.query_data import perform_query
 from RAGeneration.query_data import query_rag
 
 
 app = Flask(__name__)
+
+# Enables CORS for ALL routes
+#! TODO make it more contained
+CORS(app)
 
 @app.route("/query", methods=["POST"])
 def handle_query():
