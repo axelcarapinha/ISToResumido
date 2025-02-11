@@ -1,5 +1,0 @@
-pypdf       # PDF manipulation
-langchain   # LLM framework
-chromadb    # Vector storage
-pytest      # Testing
-# boto3     # AWS SDK (can be used for the embeddings)
