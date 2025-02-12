@@ -9,7 +9,6 @@ import { Card } from "@/components/ui/card"
 import { KeyRound } from "lucide-react"
 import Image from "next/image"
 
-// FontAwesome for Google Icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGoogle } from "@fortawesome/free-brands-svg-icons"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"

@@ -7,6 +7,11 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
 import { KeyRound } from "lucide-react"
+import Image from "next/image"
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faGoogle } from "@fortawesome/free-brands-svg-icons"
+import { faGithub } from "@fortawesome/free-brands-svg-icons"
 
 export default function SignUpPage() {
   const [isLoading, setIsLoading] = useState(false)
@@ -31,24 +36,30 @@ export default function SignUpPage() {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Name Field */}
             <div className="space-y-2">
               <label className="text-sm text-gray-600" htmlFor="name">
                 Name
               </label>
               <Input id="name" type="text" placeholder="Enter your name" required />
             </div>
+
+            {/* Email Field */}
             <div className="space-y-2">
               <label className="text-sm text-gray-600" htmlFor="email">
                 Email
               </label>
               <Input id="email" type="email" placeholder="m@example.com" required />
             </div>
+
+            {/* Password Field */}
             <div className="space-y-2">
               <label className="text-sm text-gray-600" htmlFor="password">
                 Password
               </label>
               <Input id="password" type="password" required />
             </div>
+
             <Button
               type="submit"
               className="w-full bg-[#009fe3] hover:bg-[#007bb1] transition-colors duration-200"
@@ -67,24 +78,25 @@ export default function SignUpPage() {
             </div>
           </div>
 
+          {/* Social Login Options */}
           <div className="grid grid-cols-3 gap-3">
             <Button variant="outline" className="w-full">
-              <svg className="h-5 w-5" viewBox="0 0 24 24">
-                <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z" />
-              </svg>
+              <FontAwesomeIcon icon={faGoogle} className="h-5 w-5 mr-2 text-red-500" />
+              Google
             </Button>
+
             <Button variant="outline" className="w-full">
-              <svg className="h-5 w-5" viewBox="0 0 24 24">
-                <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.92 15.5h-2.09v-5.9h-1.46V9.5h1.46V7.77c0-1.3.62-3.27 3.27-3.27h2.4v2.67h-1.74c-.29 0-.69.14-.69.75v1.58h2.46l-.29 2.1h-2.17v5.9z" />
-              </svg>
+              <Image src="/logo_ist-no-background.png" alt="Custom Logo 3" width={24} height={24} />
+              FenixID
             </Button>
+
             <Button variant="outline" className="w-full">
-              <svg className="h-5 w-5" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm5.14 15.14c-.39.39-1.02.39-1.41 0L12 13.41l-3.73 3.73c-.39.39-1.02.39-1.41 0-.39-.39-.39-1.02 0-1.41L10.59 12 6.86 8.27c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0L12 10.59l3.73-3.73c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41L13.41 12l3.73 3.73c.39.39.39 1.02 0 1.41z" />
-              </svg>
+              <FontAwesomeIcon icon={faGithub} className="h-5 w-5 mr-2 text-black-500" />
+              GitHub
             </Button>
           </div>
 
+          {/* Link to Login Page */}
           <p className="mt-8 text-center text-sm text-gray-500">
             Already have an account?{" "}
             <Link href="/login" className="text-[#009fe3] hover:underline">
@@ -93,10 +105,11 @@ export default function SignUpPage() {
           </p>
         </div>
 
+        {/* Passkey Information */}
         <div className="bg-gray-50 p-8 flex flex-col items-center justify-center border-l">
           <div className="text-center space-y-2 max-w-sm">
             <KeyRound className="h-12 w-12 mx-auto text-[#009fe3] mb-4" />
-            <h2 className="text-xl font-semibold">Use Passkeys</h2>
+            <h2 className="text-xl font-semibold">Create a Passkey</h2>
             <p className="text-sm text-gray-500">Create a passkey for passwordless sign-in with enhanced security</p>
             <Button
               className="w-full bg-[#009fe3] hover:bg-[#007bb1] transition-colors duration-200 mt-4"
@@ -108,6 +121,7 @@ export default function SignUpPage() {
         </div>
       </Card>
 
+      {/* Footer Links */}
       <div className="absolute bottom-4 text-center text-xs text-gray-500">
         <p>
           By clicking continue, you agree to our{" "}
@@ -123,4 +137,3 @@ export default function SignUpPage() {
     </div>
   )
 }
-

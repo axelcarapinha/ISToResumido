@@ -1,16 +1,34 @@
+import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from RAGeneration.query_data import perform_query
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 from RAGeneration.query_data import query_rag
-
+from .config import Config
 
 app = Flask(__name__)
 
-# Enables CORS for ALL routes
-#! TODO make it more contained
-CORS(app)
+# Load the configurations from config.py
+app.config.from_object(Config)
+
+# Specify CORS
+cors = CORS(app, resources={
+    r"/query": {
+        "origins": app.config["ALLOWED_ORIGINS"],
+        "methods": ["POST"],
+        "allow_headers": ["Content-Type"]  # for application/json
+    }
+})
+
+# Rate Limiting (Cloudflare can avoid DDoS, but some help does not hurt XD)
+limiter = Limiter(
+    get_remote_address,
+    app=app,
+    default_limits=[app.config["DEFAULT_RATE_LIMIT"]]
+)
 
 @app.route("/query", methods=["POST"])
+@limiter.limit(app.config["REQUEST_LIMIT"])
 def handle_query():
     """Handles query_data requests"""
     data = request.get_json()
@@ -23,4 +41,5 @@ def handle_query():
     return jsonify({"response": raw_response})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=app.config["DEBUG"])
+

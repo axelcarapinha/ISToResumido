@@ -1,5 +1,6 @@
 flask
 flask-cors # otherwise, the response from the LLM won't appear in the browser when using localhost
+flask-limiter
 
 aiohappyeyeballs==2.4.6
 aiohttp==3.11.12
