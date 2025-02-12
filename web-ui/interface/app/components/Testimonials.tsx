@@ -9,7 +9,7 @@ const testimonials = [
     name: "Joseph Cooper",
     role: "Pilot",
     company: "NASA",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "/person-icon.png",
     quote:
       "ISToresumido helped us quickly analyze data from different planets, streamlining our mission and saving valuable time.",
     rating: 5,
@@ -18,7 +18,7 @@ const testimonials = [
     name: "Dr. TARS",
     role: "AI Assistant",
     company: "NASA",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "/person-icon.png",
     quote:
       "I'm deeply impressed by its capabilities — almost on par with my own programs.",
     rating: 4,
@@ -27,7 +27,7 @@ const testimonials = [
     name: "Murph Cooper",
     role: "Scientist",
     company: "NASA",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "/person-icon.png",
     quote:
       "One thing only a few people know is that I decoded the gravitational anomaly thanks to the time I saved with ISToresumido. Highly recommend it!",
     rating: 5,

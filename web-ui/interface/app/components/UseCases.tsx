@@ -12,9 +12,9 @@ const useCases = [
   },
   {
     icon: <Newspaper className="w-8 h-8" />,
-    title: "Content limitations",
+    title: "Unlock authorized sources",
     description:
-      "For now, this only has publicly accessible data. A more complete version may come later.",
+      "By authenticating with your Fenix credentials, you can get more sources for your responses.",
   },
   {
     icon: <Briefcase className="w-8 h-8" />,

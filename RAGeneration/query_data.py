@@ -23,7 +23,7 @@ Answer the question based only on the following context:
 
 ---
 
-Answer the question based on the above context: {question}
+Answer the question based on the above context: 'qq{question}'
 """
 
 # Creates a CLI option from the Python file

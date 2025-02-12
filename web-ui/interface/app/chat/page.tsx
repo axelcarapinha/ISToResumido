@@ -6,10 +6,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Loader2, Send } from "lucide-react";
+import { Loader2, Send, Copy, Check } from "lucide-react";
 import { toast } from "sonner";
+import Link from "next/link";
+import Image from "next/image";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"; // Corrected to use NEXT_PUBLIC_
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 export default function ChatInterface() {
   const [messages, setMessages] = useState<{ role: "user" | "assistant"; content: string }[]>([]);
@@ -17,6 +19,7 @@ export default function ChatInterface() {
   const [isLoading, setIsLoading] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [questionCount, setQuestionCount] = useState(0);
+  const [copied, setCopied] = useState<string | null>(null); // Track which message is copied
   const router = useRouter();
 
   useEffect(() => {
@@ -33,7 +36,7 @@ export default function ChatInterface() {
       setIsLoading(true);
       setQuestionCount((prev) => prev + 1);
 
-      const response = await fetch(`${API_URL}/query`, {  // Ensure correct endpoint
+      const response = await fetch(`${API_URL}/query`, {  
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -64,47 +67,87 @@ export default function ChatInterface() {
     }
   };
 
+  const handleCopy = (content: string) => {
+    navigator.clipboard.writeText(content).then(
+      () => {
+        toast.success("Response copied to clipboard!");
+        setCopied(content);
+        setTimeout(() => setCopied(null), 2000);
+      },
+      (err) => toast.error("Failed to copy response: " + err)
+    );
+  };
+
   if (!mounted) return null;
 
-  const FREE_QUESTIONS_LIMIT = 5; // Example value
-
   return (
-    <div className="min-h-screen bg-white flex justify-center items-center p-8">
-      <div className="flex flex-col space-y-4 mr-8 min-w-[200px]">
-        <h1 className="text-2xl font-bold">ISToresumido</h1>
-
-        <hr className="border-t border-gray-200" />
-
-        <div className="text-sm text-gray-600">Get access to customized responses:</div>
-
-        <div className="space-x-2 flex">
-          <Button
-            className="bg-[#009fe3] hover:bg-[#007bb1] transition-colors duration-200"
-            onClick={() => router.push("/login")}
-          >
-            Login
-          </Button>
-          <Button
-            className="bg-[#009fe3] hover:bg-[#007bb1] transition-colors duration-200"
-            onClick={() => router.push("/sign-up")}
-          >
-            Sign Up
-          </Button>
-        </div>
+    <div className="min-h-screen bg-white flex justify-center items-center p-8 relative">
+      {/* Top Header Section */}
+      <div className="absolute top-4 left-4">
+        <Link href="/" className="text-2xl font-bold">
+          ISToresumido
+        </Link>
       </div>
 
-      <Card className="flex flex-col w-[800px] min-h-[600px] shadow-sm">
+      <div className="absolute top-4 right-4 flex flex-col items-start">
+        {/* Text near login button, shifted right */}
+        <div className="mr-4 text-sm text-gray-600">
+          Get access to more sources for your prompts:
+        </div>
+
+        {/* Login button below the text */}
+        <Button
+          variant="outline"
+          className="w-full max-w-[200px] mt-2 z-10"
+          onClick={() => router.push("/login")}
+        >
+          <Image
+            src="/logo_ist-no-background.png"
+            alt="FenixID Logo"
+            width={24}
+            height={24}
+            className="mr-2"
+          />
+          Login with FenixID
+        </Button>
+      </div>
+
+      {/* Chat Interface */}
+      <Card className="flex flex-col w-[800px] min-h-[600px] shadow-sm z-10">
         <CardContent className="flex-grow p-4">
           <ScrollArea className="h-[calc(100vh-200px)]">
             {messages.map((message, index) => (
-              <div key={index} className={`mb-4 ${message.role === "user" ? "text-right" : "text-left"}`}>
-                <span
-                  className={`inline-block p-2 rounded-lg ${
-                    message.role === "user" ? "bg-blue-500 text-white" : "bg-gray-200 text-black"
-                  }`}
-                >
-                  {message.content}
-                </span>
+              <div
+                key={index}
+                className={`mb-4 flex ${message.role === "user" ? "justify-end" : "justify-start"}`} // Align user to the right
+              >
+                <div className="flex items-center">
+                  <span
+                    className={`inline-block p-2 rounded-lg ${
+                      message.role === "user"
+                        ? "bg-blue-500 text-white"
+                        : "bg-gray-200 text-black"
+                    }`}
+                  >
+                    {message.content}
+                  </span>
+                  {message.role === "assistant" && (
+                    <Button
+                      variant="outline"
+                      className={`ml-2 p-1 text-xs ${copied === message.content ? 'bg-green-500 text-white' : ''}`}
+                      onClick={() => handleCopy(message.content)}
+                    >
+                      {copied === message.content ? (
+                        <>
+                          <Check className="h-4 w-4" />
+                          <span className="ml-1">Copied</span>
+                        </>
+                      ) : (
+                        <Copy className="h-4 w-4" />
+                      )}
+                    </Button>
+                  )}
+                </div>
               </div>
             ))}
             {isLoading && (
@@ -124,12 +167,10 @@ export default function ChatInterface() {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Type your message..."
               className="flex-grow"
-              disabled={isLoading || questionCount >= FREE_QUESTIONS_LIMIT}
             />
             <Button
               type="submit"
               className="bg-[#34D399] hover:bg-[#10B981] text-white transition-colors duration-200"
-              disabled={isLoading || questionCount >= FREE_QUESTIONS_LIMIT}
             >
               {isLoading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />

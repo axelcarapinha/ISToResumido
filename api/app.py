@@ -38,7 +38,7 @@ def handle_query():
         return jsonify({"error": "Missing question"}), 400
 
     raw_response = query_rag(question)
-    return jsonify({"response": raw_response})
+    return jsonify({"answer": raw_response})
 
 if __name__ == "__main__":
     app.run(debug=app.config["DEBUG"])

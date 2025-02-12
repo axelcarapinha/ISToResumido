@@ -41,7 +41,7 @@ export default function Hero() {
               <span className="text-primary-DEFAULT"><br />1 prompt away</span>
             </h1>
             <h2 className="text-2xl md:text-3xl font-medium mb-6 text-neutral-light">
-              AI-powered summarization
+              Free AI-powered summarization
             </h2>
             <p className="text-lg md:text-xl text-neutral-light mb-8 max-w-2xl mx-auto lg:mx-0">
               Avoid countless time finding that specific regulation. <br />
@@ -54,7 +54,7 @@ export default function Hero() {
                 whileTap={{ scale: 0.95 }}
                 onClick={redirectToChat}
               >
-                Try for Free
+                Try it!
                 <ArrowRight className="w-5 h-5 inline-block ml-2" />
               </motion.button>
               <motion.button
