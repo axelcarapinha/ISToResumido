@@ -1,0 +1,24 @@
+FROM python:3.9-slim
+
+# Set environment variables to avoid python writing .pyc files and set the buffer mode to avoid issues
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libssl-dev \
+    libffi-dev \
+    python3-dev \
+    libsasl2-dev \
+    libldap2-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Go to the folder where the scrapu project is
+WORKDIR /app/istoresumido/istoresumido
+
+COPY . /app
+
+CMD ["scrapy", "crawl", "document_spider"]

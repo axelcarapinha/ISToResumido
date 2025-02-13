@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   backend:
     build:
@@ -14,3 +16,12 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.frontend
     network_mode: host
+
+  scrapy:
+    build:
+      context: ./crawler
+      dockerfile: Dockerfile.crawler
+    volumes:
+      - ./data-llm:/app/00_downloads/
+    network_mode: host
+    command: ["scrapy", "crawl", "document_spider"]
