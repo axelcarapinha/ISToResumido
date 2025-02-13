@@ -1,0 +1,16 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    environment:
+      - FLASK_APP=/app/api/app.py
+    volumes:
+      - ./data-llm:/app/RAGeneration/data
+    network_mode: host
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    network_mode: host
