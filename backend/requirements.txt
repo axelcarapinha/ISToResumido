@@ -1,0 +1,9 @@
+Flask==3.1.0
+Flask_Cors==5.0.0
+Flask_Limiter==3.10.1
+langchain==0.3.18
+langchain_chroma==0.2.1
+langchain_community==0.3.17
+langchain_ollama==0.2.3
+langchain_text_splitters==0.3.6
+python-dotenv==1.0.1

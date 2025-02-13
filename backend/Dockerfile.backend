@@ -1,0 +1,18 @@
+FROM python:3.9-slim
+
+WORKDIR /app
+
+COPY api /app/api
+COPY RAGeneration /app/RAGeneration
+
+COPY requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+ENV ALLOWED_ORIGINS=http://frontend-container:3000
+
+EXPOSE 3000
+
+VOLUME ["../data-llm:/app/RAGeneration/data"]
+
+ENV FLASK_APP=/app/api/app.py
+CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
