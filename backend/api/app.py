@@ -12,13 +12,14 @@ app = Flask(__name__)
 app.config.from_object(Config)
 
 # Specify CORS
-cors = CORS(app, resources={
-    r"/query": {
-        "origins": app.config["ALLOWED_ORIGINS"],
-        "methods": ["POST"],
-        "allow_headers": ["Content-Type"]  # for application/json
-    }
-})
+CORS(app)
+# cors = CORS(app, resources={
+#     r"/query": {
+#         "origins": app.config["ALLOWED_ORIGINS"],
+#         "methods": ["POST"],
+#         "allow_headers": ["Content-Type"]  # for application/json
+#     }
+# })
 
 # Rate Limiting (Cloudflare can avoid DDoS, but some help does not hurt XD)
 limiter = Limiter(

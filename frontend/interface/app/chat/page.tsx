@@ -36,15 +36,25 @@ export default function ChatInterface() {
       setIsLoading(true);
       setQuestionCount((prev) => prev + 1);
 
-      const response = await fetch(`${API_URL}/query`, {  
+      const response = await fetch(`${API_URL}/query`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Origin": "http://localhost:3000",  // for CORS
         },
         body: JSON.stringify({
           question: input,
         }),
       });
+
+      //TODO remove
+      console.log("Response:")
+      console.log(response)
+      console.log("")
+      console.log("")
+      console.log("")
+
+
 
       if (!response.ok) {
         throw new Error("Failed to get response");

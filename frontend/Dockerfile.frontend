@@ -1,0 +1,16 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY interface/package*.json ./
+
+# "ci" == "clean install" (depencies from package-lock.json)
+RUN npm ci 
+
+COPY interface ./
+
+RUN npm run build
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
