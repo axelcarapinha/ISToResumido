@@ -6,11 +6,12 @@ services:
     environment:
       - FLASK_APP=/app/api/app.py
     volumes:
-      - ./data-llm:/app/RAGeneration/data
+      - ./data/data-llm:/app/RAGeneration/data
+      - ./data/database-llm:/app/RAGeneration/chroma
     network_mode: host
 
-  # frontend:
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: Dockerfile.frontend
-  #   network_mode: host
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    network_mode: host
