@@ -4,6 +4,7 @@ from flask_cors import CORS
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from RAGeneration.query_data import query_rag
+from RAGeneration.populate_database import main
 from .config import Config
 
 app = Flask(__name__)

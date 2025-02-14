@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   backend:
     build:
@@ -11,8 +9,8 @@ services:
       - ./data-llm:/app/RAGeneration/data
     network_mode: host
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile.frontend
-    network_mode: host
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile.frontend
+  #   network_mode: host
