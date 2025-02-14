@@ -2,4 +2,6 @@ urls:
   - 'https://conselhopedagogico.tecnico.ulisboa.pt/'
   - 'https://tecnico.ulisboa.pt/pt/'
 
+#TODO use the urls from this configuration (currently it has the first hard coded)
+
 downloads_folder: '00_downloads' # folder used for the file downloads

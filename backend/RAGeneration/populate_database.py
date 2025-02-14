@@ -8,7 +8,7 @@ from get_embedding_function import get_embedding_function
 from langchain_community.vectorstores import Chroma
 
 CHROMA_PATH = "chroma"
-DATA_PATH = "data"
+DATA_PATH = "../data-llm" # use the scraped data
 
 def main():
 

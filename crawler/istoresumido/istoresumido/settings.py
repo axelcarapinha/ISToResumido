@@ -37,7 +37,7 @@ CONCURRENT_REQUESTS = 10
 DOWNLOAD_TIMEOUT = 3
 DOWNLOAD_DELAY = 3 # avoid overloading the server
 
-FILES_STORE = os.path.join(os.path.dirname(__file__), '..', config['downloads_folder'])
+FILES_STORE = os.path.join(os.path.dirname(__file__), '../../', config['downloads_folder'])
 
 # The download delay setting will honor only one of:
 # CONCURRENT_REQUESTS_PER_DOMAIN = 4
