@@ -7,8 +7,8 @@ from langchain.schema.document import Document
 from .get_embedding_function import get_embedding_function
 from langchain_chroma import Chroma
 
-CHROMA_PATH = "chroma"
-DATA_PATH = "data" # will end up using the docker volume with the scraped data
+CHROMA_PATH = "RAGeneration/chroma"
+DATA_PATH = "RAGeneration/data" # will end up using the docker volume with the scraped data
 
 def main():
 
@@ -65,7 +65,6 @@ def add_to_chroma(chunks: list[Document]):
         print(f"👉 Adding new documents: {len(new_chunks)}")
         new_chunk_ids = [chunk.metadata["id"] for chunk in new_chunks]
         db.add_documents(new_chunks, ids=new_chunk_ids)
-        db.persist()
     else:
         print("✅ No new documents to add")
 

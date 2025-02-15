@@ -10,8 +10,8 @@ services:
       - ./data/database-llm:/app/RAGeneration/chroma
     network_mode: host
 
-  # frontend:
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: Dockerfile.frontend
-  #   network_mode: host
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    network_mode: host
