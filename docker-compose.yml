@@ -3,6 +3,8 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.backend
+    secrets:
+      - openai_api_key
     environment:
       - FLASK_APP=/app/api/app.py
     volumes:
@@ -15,3 +17,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.frontend
     network_mode: host
+  
+secrets:
+  openai_api_key:
+    file: openai_api_key.txt
