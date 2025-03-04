@@ -20,7 +20,7 @@ def main():
         print("✨ Clearing Database")
         clear_database()
 
-    # Create (or update) the data store.
+    # Create (or update) the data store
     documents = load_documents()
     chunks = split_documents(documents)
     add_to_chroma(chunks)

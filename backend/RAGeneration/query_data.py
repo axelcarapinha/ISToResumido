@@ -1,5 +1,7 @@
 import argparse
 import os
+import sys
+import openai
 
 from dotenv import load_dotenv
 from langchain_chroma import Chroma
@@ -9,13 +11,13 @@ from .get_embedding_function import get_embedding_function
 
 #TODO uncomment if NOT running locally
 # Loading the API key for the prompt
-load_dotenv()
-DEBUG = os.getenv("DEBUG")
+# load_dotenv()
+# DEBUG = os.getenv("DEBUG")
 # LLM_API_KEY = os.getenv("OPENAI_API_KEY")
 # if not LLM_API_KEY:
 #     raise ValueError("OPENAI_API_KEY is not set in the .env file.")
 
-CHROMA_PATH = "chroma"
+CHROMA_PATH = "RAGeneration/chroma" # must be this way because the command to run from the module (outside the RAGeneration folder) is python3 -m RAGeneration.populate_database
 PROMPT_TEMPLATE = """
 Answer the question based only on the following context:
 
@@ -48,10 +50,21 @@ def query_rag(query_text: str):
     context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results])
     prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
     prompt = prompt_template.format(context=context_text, question=query_text)
-    if DEBUG: 
-        print(prompt)
+    # if DEBUG: 
+    #     print(prompt)
 
-    model = OllamaLLM(model="tinyllama") #TODO use a yaml file for this configuration
+    #TODO use this
+    # client = openai.Client(api_key=LLM_API_KEY)
+    # response = client.chat.completions.create(
+    #     model="gpt-3.5-turbo-0125",  
+    #     messages=[{"role": "system", "content": "You are a helpful assistant."},
+    #               {"role": "user", "content": prompt}],
+    #     temperature=0.7
+    # )
+    # response_text = response.choices[0].message.content.strip()
+
+    #TODO use a yaml file for this configuration
+    model = OllamaLLM(model="llama3") 
     response_text = model.invoke(prompt)
 
     sources = [doc.metadata.get("id", None) for doc, _score in results]
