@@ -12,3 +12,6 @@ chromadb
 openai
 tiktoken
 langchain-openai
+gunicorn
+limits
+redis

@@ -11,7 +11,7 @@ import { toast } from "sonner";
 import Link from "next/link";
 import Image from "next/image";
 
-const API_URL = "https://istoresumido-api.axelamc.com/"; // NEEDS to have httpS
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/"; // defaults to the host mode of running containers
 
 export default function ChatInterface() {
   const [messages, setMessages] = useState<{ role: "user" | "assistant"; content: string }[]>([]);
@@ -39,8 +39,7 @@ export default function ChatInterface() {
       const response = await fetch(`${API_URL}`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          "Origin": "http://istoresumido-frontend-1:3000",  // for CORS
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
           question: input,

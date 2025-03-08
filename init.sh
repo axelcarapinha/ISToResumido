@@ -12,11 +12,9 @@
 
 echo -e "\033[34mBuilding the backend and frontend containers\033[0m"
 
-# Docker Bake + BuildKit allows for more efficient builds 
+# Uses Docker Bake + BuildKit allows for more efficient builds 
 # (building in parallel, advanced caching, layer caching, ...)
-export COMPOSE_BAKE=true 
-
-# sudo docker-compose up --build -d
+COMPOSE_BAKE=true sudo docker-compose up --build -d
 
 # Ensure the services start properly
 # sleep 5 # quick nap

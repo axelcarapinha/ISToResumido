@@ -1,4 +1,5 @@
 import os
+import redis
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from flask_limiter import Limiter
@@ -12,27 +13,29 @@ app = Flask(__name__)
 # Load the configurations from config.py
 app.config.from_object(Config)
 
+# CORS configuration using the environment variable for origins
+CORS_ALLOWED_URL = os.getenv("CORS_ALLOWED_URL", "http://localhost:3000") # defaults to localhost if needed
 cors = CORS(app, resources={
     r"/": {
-        "origins": [
-            "http://istoresumido-frontend-1:3000",
-            "http://localhost:3000",
-            "https://istoresumido.axelamc.com"
-        ],
+        "origins": [CORS_ALLOWED_URL],
         "methods": ["POST"],
         "allow_headers": ["Content-Type"]  # for application/json
     }
 })
 
-# Rate Limiting (Cloudflare can avoid DDoS, but some help does not hurt XD)
+# Rate limiting with Redis (if the service restarts, the usage count will continue, not restart)
+REDIS_URL = os.getenv("REDIS_URL", "redis://redis:6379")  # default Redis URL
+
+# Using storage_uri directly
 limiter = Limiter(
     get_remote_address,
     app=app,
+    storage_uri=REDIS_URL,
     default_limits=[app.config["DEFAULT_RATE_LIMIT"]]
 )
 
 @app.route("/", methods=["POST"])
-@limiter.limit(app.config["REQUEST_LIMIT"])
+@limiter.limit(app.config["REQUEST_LIMIT"])  # Apply rate limit to the route
 def handle_query():
     print("Testing, to check if the query is received")
     """Handles query_data requests"""

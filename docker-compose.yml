@@ -1,32 +1,56 @@
 services:
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile.backend
-    secrets:
-      - openai_api_key
-    environment:
-      - FLASK_APP=/app/api/app.py
-    volumes:
-      - ./data/data-llm:/app/RAGeneration/data
-      - ./data/database-llm:/app/RAGeneration/chroma
-    networks:
-      - cloudflare-tunnel-net
-
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile.frontend
+    restart: always
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:5000
+    depends_on:
+      - backend
     networks:
-      - cloudflare-tunnel-net
+      - istoresumido_net
+    ports:
+      - "3000:3000"
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    restart: always
+    secrets:
+      - openai_api_key
+    environment:
+      - FLASK_APP=/app/api/app.py
+      - CORS_ALLOWED_URL=http://localhost:3000
+      - REDIS_URL=redis://redis:6379
+      - DEBUG=0
+    depends_on:
+      - redis
+    volumes:
+      - ./data/data-llm:/app/RAGeneration/data
+      - ./data/database-llm:/app/RAGeneration/chroma
+    networks:
+      - istoresumido_net
+    ports:
+      - "5000:5000"
+
+  redis:
+    image: redis:latest
+    restart: always
+    networks:
+      - istoresumido_net
 
 secrets:
   openai_api_key:
     file: openai_api_key.txt
 
 networks:
-  cloudflare-tunnel-net:
-    name: network-coudflare-tunnel
-    external: true # because that docker network already exists
+  istoresumido_net:
+    driver: bridge
 
-
+#! Example configuration for the server I have running
+# networks:
+#   cloudflare-tunnel-net:
+#     name: network-coudflare-tunnel
+#     external: true # because that docker network already exists

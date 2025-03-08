@@ -8,9 +8,8 @@ COPY RAGeneration /app/RAGeneration
 COPY requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
-ENV DEBUG false
-
-EXPOSE 3000
+# For documentation
+EXPOSE 5000
 
 ENV FLASK_APP=/app/api/app.py
-CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:5000", "api.app:app"]
