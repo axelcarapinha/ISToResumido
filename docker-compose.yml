@@ -10,14 +10,23 @@ services:
     volumes:
       - ./data/data-llm:/app/RAGeneration/data
       - ./data/database-llm:/app/RAGeneration/chroma
-    network_mode: host
+    networks:
+      - cloudflare-tunnel-net
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile.frontend
-    network_mode: host
-  
+    networks:
+      - cloudflare-tunnel-net
+
 secrets:
   openai_api_key:
     file: openai_api_key.txt
+
+networks:
+  cloudflare-tunnel-net:
+    name: network-coudflare-tunnel
+    external: true # because that docker network already exists
+
+

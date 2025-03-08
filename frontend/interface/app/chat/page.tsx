@@ -11,7 +11,7 @@ import { toast } from "sonner";
 import Link from "next/link";
 import Image from "next/image";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+const API_URL = "https://istoresumido-api.axelamc.com/"; // NEEDS to have httpS
 
 export default function ChatInterface() {
   const [messages, setMessages] = useState<{ role: "user" | "assistant"; content: string }[]>([]);
@@ -36,25 +36,16 @@ export default function ChatInterface() {
       setIsLoading(true);
       setQuestionCount((prev) => prev + 1);
 
-      const response = await fetch(`${API_URL}/query`, {
+      const response = await fetch(`${API_URL}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Origin": "http://localhost:3000",  // for CORS
+          "Origin": "http://istoresumido-frontend-1:3000",  // for CORS
         },
         body: JSON.stringify({
           question: input,
         }),
       });
-
-      //TODO remove
-      console.log("Response:")
-      console.log(response)
-      console.log("")
-      console.log("")
-      console.log("")
-
-
 
       if (!response.ok) {
         throw new Error("Failed to get response");

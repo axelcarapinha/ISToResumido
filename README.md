@@ -49,9 +49,8 @@
 
 ## Prerequisites
 - <a href="https://docs.docker.com/compose/install/">Docker Compose</a>
-- <a href="https://ollama.com/">Ollama</a> service running
 
-## Running locally
+## How to deploy
 0. Consider seeing <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">this demo</a> to understand normal results
 1. Run the code below:
 

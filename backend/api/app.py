@@ -13,9 +13,9 @@ app = Flask(__name__)
 app.config.from_object(Config)
 
 cors = CORS(app, resources={
-    r"/query": {
+    r"/": {
         "origins": [
-            "http://frontend:3000",
+            "http://istoresumido-frontend-1:3000",
             "http://localhost:3000",
             "https://istoresumido.axelamc.com"
         ],
@@ -31,9 +31,10 @@ limiter = Limiter(
     default_limits=[app.config["DEFAULT_RATE_LIMIT"]]
 )
 
-@app.route("/query", methods=["POST"])
+@app.route("/", methods=["POST"])
 @limiter.limit(app.config["REQUEST_LIMIT"])
 def handle_query():
+    print("Testing, to check if the query is received")
     """Handles query_data requests"""
     data = request.get_json()
     question = data.get("question")

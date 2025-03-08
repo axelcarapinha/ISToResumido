@@ -8,17 +8,22 @@
 # cd ..
 
 # echo -e "\033[34mRunning the LLM with ollama\033[0m"
-OLLAMA_HOST=localhost:1930 ollama serve &
+# OLLAMA_HOST=localhost:1930 ollama serve &
 
 echo -e "\033[34mBuilding the backend and frontend containers\033[0m"
-sudo docker-compose up --build -d
+
+# Docker Bake + BuildKit allows for more efficient builds 
+# (building in parallel, advanced caching, layer caching, ...)
+export COMPOSE_BAKE=true 
+
+# sudo docker-compose up --build -d
 
 # Ensure the services start properly
-sleep 5 # quick nap
+# sleep 5 # quick nap
 
 # (even with more instances, the container with index 1 is enough to update the shared database)
-echo -e "\033[34mPopulating the vector DB with the content from the downloaded PDFs\033[0m"
-sudo docker exec istoresumido-backend-1 python3 -m RAGeneration.populate_database
+# echo -e "\033[34mPopulating the vector DB with the content from the downloaded PDFs\033[0m"
+# sudo docker exec istoresumido-backend-1 python3 -m RAGeneration.populate_database
 
 # Testing the accuracy of the LLM
 # echo -e "\033[34mTesting the accuracy of the prompts\033[0m"
