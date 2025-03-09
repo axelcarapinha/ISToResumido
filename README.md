@@ -129,24 +129,27 @@ I did not make a chatbot for this questions XD
   - Being frank, IST does have an API, but it does not allow to download files (afaik), so I simulated a user on 7 cups of coffee downloading, by adding some intentional overhead to the download process.
   - Also, it only downloads once, Scrapy avoids repetitive downloads.
 - What content does it scrape?
-  - Currently only PDFs
+  - Currently only PDFs (it has a bash script that filters out image-only PDFs, as that ones will need OCR in a future feature).
 - What is the main flow of requests?
   1. User
   2. Browser
   3. React
-  4. API (a single route exposed, with traffic limit, difficulting DoS hehe)
+  4. API (a single route exposed, with traffic limit and proxied through Cloudflare)
   5. Python backend
-  6. LLM running (managed by Ollama)
+  6. LLM running (currently with an OpenAI (paid) API key)
   7. All the way back with the response
 - What model should I use?
   - There can actually be 3 models being used (open models go brrrr):
     1. one for the embeddings
     2. other for the actual prompts
     3. a final one for evaluating the prompts of the previous (<a href="https://humornama.com/wp-content/uploads/2021/01/Obama-Awarding-Obama-meme-template.jpg">like this</a>)
+  - Currently uses OpenAI API
   - Llama2 should already give reasonable results for the quality of embeddings (that only need to run when adding new documents)
-  - For the LLM using the embeddings, it needs to be tested, I'm even considering the possibility of using ChatGPT (depending on the quota)
+  - For the LLM using the embeddings, it needs to be tested
 - How can it be publicly deployed?
-  - Kubernetes remains a good plan for me, but I accept other alternatives
+  - Kubernetes remains a good plan for in the future, but with Docker Compose from a single system _currently_ runs well
+- I think you did wrong choices, can the project change?
+  - Sure! Let me know your perspectives, change and contribute :) it's open source after all
 
 ## Acknowledgments
 - The <a href="./backend//RAGeneration/">RAGeneration</a> code is highly inspired by [this tutorial](https://www.youtube.com/watch?v=2TJxpyO3ei4), being later adapted to the remaining parts I've been adding.
