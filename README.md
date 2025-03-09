@@ -14,7 +14,7 @@
     <a href="https://istoresumido.axelamc.com"><strong>Check it out »</strong></a>
     <br />
     <br />
-    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">View Demo</a>
+    <a href="https://youtu.be/ow49a4tRq6Q">View Demo</a>
     &middot;
     <a href="https://github.com/axelcarapinha/ISToResumido/issues/new">Report Bug / Feature Requests</a>
   </p>
@@ -51,7 +51,7 @@
 - <a href="https://docs.docker.com/compose/install/">Docker Compose</a>
 
 ## How to deploy
-Video <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">tutorial</a>, or:
+Video <a href="https://youtu.be/ow49a4tRq6Q">tutorial</a>, or:
 1. Clone the repo
 
 ```bash
