@@ -56,9 +56,7 @@ Video <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">tutorial</a>, or:
 
 ```bash
 # "Read the source, Luke"
-git clone https://github.com/axelcarapinha/ISToResumido.git && \
-cd ISToResumido && \
-sudo bash init.sh
+git clone https://github.com/axelcarapinha/ISToResumido.git && cd ISToResumido
 ```
 
 2. Edit the docker-compose.yml file, changing to your needs the values of the following parts:
