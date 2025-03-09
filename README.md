@@ -55,7 +55,6 @@ Video <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">tutorial</a>, or:
 1. Clone the repo
 
 ```bash
-# "Read the source, Luke"
 git clone https://github.com/axelcarapinha/ISToResumido.git && cd ISToResumido
 ```
 
@@ -64,10 +63,11 @@ git clone https://github.com/axelcarapinha/ISToResumido.git && cd ISToResumido
 - NEXT_PUBLIC_API_URL (the URL for the _backend_ API, defaults to http://localhost:5000)
 - CORS_ALLOWED_URL (the URL that points to the _frontend_, defaults to http://localhost:3000)
 
-3. Edit the init.sh file if you want to scrape data first
+3. Edit the `init.sh` file if you want to scrape data first
 
 4. Let docker compose, get up and build something useful.
 ```bash
+# "Read the source, Luke"
 bash init.sh
 ```
 
