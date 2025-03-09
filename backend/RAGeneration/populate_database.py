@@ -97,10 +97,19 @@ def calculate_chunk_ids(chunks):
 
     return chunks
 
-
 def clear_database():
     if os.path.exists(CHROMA_PATH):
-        shutil.rmtree(CHROMA_PATH)
+        print(f"🗑️ Clearing contents of {CHROMA_PATH}...")
+        
+        # Iterate over all files in the directory and remove them
+        for item in os.listdir(CHROMA_PATH):
+            item_path = os.path.join(CHROMA_PATH, item)
+            if os.path.isfile(item_path):
+                os.remove(item_path)  # Delete the file
+            elif os.path.isdir(item_path):
+                shutil.rmtree(item_path)  # Remove subdirectories recursively
+
+        print(f"✅ {CHROMA_PATH} is now empty.")
 
 
 if __name__ == "__main__":
