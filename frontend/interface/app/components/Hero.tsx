@@ -21,7 +21,7 @@ export default function Hero() {
   }
 
   const redirectToDemo = () => {
-    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
+    window.open("https://youtu.be/ow49a4tRq6Q", "_blank")
   }
 
   if (!isClient) return null
