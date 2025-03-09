@@ -52,6 +52,6 @@ networks:
 
 #! Example configuration for the server I have running
 # networks:
-#   cloudflare-tunnel-net:
+#   istoresumido_net:
 #     name: network-coudflare-tunnel
 #     external: true # because that docker network already exists
