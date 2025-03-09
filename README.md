@@ -28,7 +28,7 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#running-locally">Running locally</a></li>
+        <li><a href="#how-to-deploy">How to deploy</a></li>
         <li><a href="#contributions">Contributions</a></li>
       </ul>
     </li>
@@ -122,6 +122,8 @@ It can (relatively quickly) be adapted to other use cases. A tutorial on that is
 ## Q and A
 I did not make a chatbot for this questions XD
 
+- Where is the website hosted?
+  - "Intermitent" RaspBerryPi server with 8Gib of RAM (sometimes it will be turned off, need another hosting method, probably).
 - Why scrape data?
   - Why not?
   - Being frank, IST does have an API, but it does not allow to download files (afaik), so I simulated a user on 7 cups of coffee downloading, by adding some intentional overhead to the download process.
