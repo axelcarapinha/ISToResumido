@@ -66,13 +66,14 @@ sudo bash init.sh
 - NEXT_PUBLIC_API_URL (the URL for the _backend_ API, defaults to http://localhost:5000)
 - CORS_ALLOWED_URL (the URL that points to the _frontend_, defaults to http://localhost:3000)
 
-3. Let docker compose, get up and build something useful.
+3. Edit the init.sh file if you want to scrape data first
+
+4. Let docker compose, get up and build something useful.
 ```bash
-sudo docker compose up --build
+bash init.sh
 ```
 
-4. Visit your <a href="http://localhost:3000">local interface</a> (if you runned it locally)
-
+5. Visit your <a href="http://localhost:3000">local interface</a> (if you runned it locally)
 
 ## Contributions
 There's a lot of room for improvements!
