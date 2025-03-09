@@ -1,16 +1,15 @@
 FROM node:18-alpine
-
 WORKDIR /app
+
+# Done this way because -> https://github.com/vercel/next.js/discussions/14030
+ARG NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 
 COPY interface/package*.json ./
 
 # "ci" == "clean install" (depencies from package-lock.json)
-RUN npm ci 
-
+RUN npm ci
 COPY interface ./
-
 RUN npm run build
-
 EXPOSE 3000
-
 CMD ["npm", "start"]

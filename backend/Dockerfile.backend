@@ -1,6 +1,9 @@
 FROM python:3.9-slim
-
 WORKDIR /app
+
+# Done this way because -> https://github.com/vercel/next.js/discussions/14030
+ARG CORS_ALLOWED_URL
+ENV CORS_ALLOWED_URL=${CORS_ALLOWED_URL}
 
 COPY api /app/api
 COPY RAGeneration /app/RAGeneration
@@ -8,7 +11,7 @@ COPY RAGeneration /app/RAGeneration
 COPY requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
-# For documentation
+# For documentation (it's defined in the docker compose)
 EXPOSE 5000
 
 ENV FLASK_APP=/app/api/app.py

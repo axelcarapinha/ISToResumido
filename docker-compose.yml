@@ -3,9 +3,9 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile.frontend
+      args: # this way because -> https://github.com/vercel/next.js/discussions/14030
+        NEXT_PUBLIC_API_URL: "http://localhost:5000"
     restart: always
-    environment:
-      - NEXT_PUBLIC_API_URL=http://localhost:5000
     depends_on:
       - backend
     networks:
@@ -17,12 +17,13 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.backend
+      args: # this way because -> https://github.com/vercel/next.js/discussions/14030
+        CORS_ALLOWED_URL: "http://localhost:3000"
     restart: always
     secrets:
       - openai_api_key
     environment:
       - FLASK_APP=/app/api/app.py
-      - CORS_ALLOWED_URL=http://localhost:3000
       - REDIS_URL=redis://redis:6379
       - DEBUG=0
     depends_on:

@@ -1,5 +1,6 @@
 import os
 import redis
+import logging
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from flask_limiter import Limiter
@@ -14,10 +15,10 @@ app = Flask(__name__)
 app.config.from_object(Config)
 
 # CORS configuration using the environment variable for origins
-CORS_ALLOWED_URL = os.getenv("CORS_ALLOWED_URL", "http://localhost:3000") # defaults to localhost if needed
+CORS_ALLOWED_URL=app.config["CORS_ALLOWED_URL"].rstrip("/") # a slash at the end would CORSpond to a mistake
 cors = CORS(app, resources={
-    r"/": {
-        "origins": [CORS_ALLOWED_URL],
+    r"/*": {
+        "origins": CORS_ALLOWED_URL,
         "methods": ["POST"],
         "allow_headers": ["Content-Type"]  # for application/json
     }

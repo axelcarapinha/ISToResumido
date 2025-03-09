@@ -51,8 +51,8 @@
 - <a href="https://docs.docker.com/compose/install/">Docker Compose</a>
 
 ## How to deploy
-0. Consider seeing <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">this demo</a> to understand normal results
-1. Run the code below:
+Video <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">tutorial</a>, or:
+1. Clone the repo
 
 ```bash
 # "Read the source, Luke"
@@ -61,7 +61,17 @@ cd ISToResumido && \
 sudo bash init.sh
 ```
 
-2. Visit <a href="http://localhost:3000">your local interface</a>
+2. Edit the docker-compose.yml file, changing to your needs the values of the following parts:
+- network (default works for localhost)
+- NEXT_PUBLIC_API_URL (the URL for the _backend_ API, defaults to http://localhost:5000)
+- CORS_ALLOWED_URL (the URL that points to the _frontend_, defaults to http://localhost:3000)
+
+3. Let docker compose, get up and build something useful.
+```bash
+sudo docker compose up --build
+```
+
+4. Visit your <a href="http://localhost:3000">local interface</a> (if you runned it locally)
 
 
 ## Contributions
@@ -89,16 +99,19 @@ It can (relatively quickly) be adapted to other use cases. A tutorial on that is
 
 
 ## Built With
-            
+
 | Tool           | Usage                                                               |
-|----------------|---------------------------------------------------------            |
-| [![Scrapy][Scrapy]][Scrapy-url]  | Scraping data from IST                            |
+|----------------|---------------------------------------------------------------------|
+| [![React][React]][React-url]      | Frontend web interface                           |
+| [![Gunicorn][Gunicorn]][Gunicorn-url] | WSGI server for running the Flask API (improves performance) |
 | [![Flask][Flask]][Flask-url]      | Backend API                                      |
 | [![Python][Python]][Python-url]   | Core programming language for the project        |
+| [![Redis][Redis]][Redis-url]      | In-memory data store for caching and message brokering |
 | [![ChromaDB][ChromaDB]][ChromaDB-url] | Database for storing and managing embeddings |
-| [![React][React]][React-url]      | Frontend web interface                           |
+| [![Docker][Docker]][Docker-url]   | Containerization 
+| [![Scrapy][Scrapy]][Scrapy-url]  | Scraping data from IST                            |
 | [![Canva][Canva]][Canva-url]      | To make the Logo and some icon designs           |
-| [![Docker][Docker]][Docker-url]   | Containerization                                 |
+
 
 
 ## Q and A
@@ -128,15 +141,9 @@ I did not make a chatbot for this questions XD
 - How can it be publicly deployed?
   - Kubernetes remains a good plan for me, but I accept other alternatives
 
-## License
-==TODO==
-Include the LICENSE.TXT and other needed files
-
 ## Acknowledgments
 - The <a href="./backend//RAGeneration/">RAGeneration</a> code is highly inspired by [this tutorial](https://www.youtube.com/watch?v=2TJxpyO3ei4), being later adapted to the remaining parts I've been adding.
 - The frontend was adapted from an initial draft made with <a href="https://v0.dev/">V0</a>
-
-
 
 
 [Scrapy]: https://img.shields.io/badge/Scrapy-00B140?style=for-the-badge&logo=scrapy&logoColor=white
@@ -153,6 +160,12 @@ Include the LICENSE.TXT and other needed files
 
 [ChromaDB]: https://img.shields.io/badge/ChromaDB-FF6B6B?style=for-the-badge&logo=database&logoColor=white
 [ChromaDB-url]: https://www.trychroma.com/
+
+[Gunicorn]: https://img.shields.io/badge/Gunicorn-5A5A5A?style=for-the-badge&logo=gunicorn&logoColor=white
+[Gunicorn-url]: https://gunicorn.org/
+
+[Redis]: https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white
+[Redis-url]: https://redis.io/
 
 [Docker]: https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white
 [Docker-url]: https://www.docker.com/
