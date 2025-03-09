@@ -63,15 +63,21 @@ git clone https://github.com/axelcarapinha/ISToResumido.git && cd ISToResumido
 - NEXT_PUBLIC_API_URL (the URL for the _backend_ API, defaults to http://localhost:5000)
 - CORS_ALLOWED_URL (the URL that points to the _frontend_, defaults to http://localhost:3000)
 
-3. Edit the `init.sh` file if you want to scrape data first
+3. Create the file with your openai api key (or configure to run with ollama)
+```bash
+# Make sure .gitignore should already have "openai_api_key.txt" on it!
+nano openai_api_key.txt # paste your api key there, and save
+```
 
-4. Let docker compose, get up and build something useful.
+4. Edit the `init.sh` file if you want to scrape data first
+
+5. Let docker compose, get up and build something useful.
 ```bash
 # "Read the source, Luke"
 bash init.sh
 ```
 
-5. Visit your <a href="http://localhost:3000">local interface</a> (if you runned it locally)
+6. Visit your <a href="http://localhost:3000">local interface</a> (if you runned it locally)
 
 ## Contributions
 There's a lot of room for improvements!
