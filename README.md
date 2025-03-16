@@ -93,6 +93,27 @@ There's a lot of room for improvements!
 - Ideas of your own
 - Features and issues from the [GitHub project](https://github.com/users/axelcarapinha/projects/11)
 
+## I want to learn in order to contribute. What do I need to know?
+At first, Docker. I learned from [tutorials](https://www.youtube.com/watch?v=dH3DdLy574M&list=PLIhvC56v63IJlnU4k60d0oFIrsbXEivQo) and good[documentation](https://docs.docker.com/), for example.
+
+Then, learning about [APIs](https://www.youtube.com/watch?v=4vLxWqE94l4). <br/>
+Possible <u>sidequest</u>: understanding why ISToResumido's API is _not_ a [fully compliant RESTful API](https://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven).
+
+From now on, it depends on where you want to focus:
+Frontend:
+  - React
+  - JS
+Crawler: 
+  - Python
+  - web scrapers
+  - headless browsers (at least an overview)
+  - some XPath
+Backend: 
+  - Python
+  - vector DBs (at least an overview)
+  - Retrieval Augmented Generation (at least an overview)
+
+Also, useful to learn, is [Git](https://learngitbranching.js.org/).
 
 ---
 
