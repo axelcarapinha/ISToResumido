@@ -99,22 +99,22 @@ At first, Docker. I learned from [tutorials](https://www.youtube.com/watch?v=dH3
 Then, learning about [APIs](https://www.youtube.com/watch?v=4vLxWqE94l4). <br/>
 Possible <u>sidequest</u>: understanding why ISToResumido's API is _not_ a [fully compliant RESTful API](https://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven).
 
-From now on, it depends on where you want to focus: 
-<br/>
-Frontend:
+From now on, it depends on where you want to focus:
+
+**Frontend:**
   - React
-  - JS
-<br/>
-Crawler: 
+  - JavaScript (JS)
+
+**Crawler:**
   - Python
-  - web scrapers
-  - headless browsers (at least an overview)
-  - some XPath
-<br/>
-Backend: 
+  - Web scrapers
+  - Headless browsers (at least an overview)
+  - XPath
+
+**Backend:**
   - Python
-  - vector DBs (at least an overview)
-  - Retrieval Augmented Generation (at least an overview)
+  - Vector databases (at least an overview)
+  - Retrieval-Augmented Generation (at least an overview)
 
 Also, useful to learn, is Git. Hey, consider using [this](https://learngitbranching.js.org/).
 
