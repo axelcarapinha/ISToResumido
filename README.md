@@ -117,7 +117,7 @@ From now on, it depends on where you want to focus:
   - Retrieval-Augmented Generation (at least an overview)
   - (Other ML concepts can be useful in the near future)
 
-Also, useful to learn, is Git. Hey, consider using [this](https://learngitbranching.js.org/).
+Also, something useful to learn is Git. Hey, consider using [this](https://learngitbranching.js.org/).
 
 ---
 
