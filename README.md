@@ -164,7 +164,7 @@ I did not make a chatbot for this questions XD
   6. LLM running (currently with an OpenAI (paid) API key)
   7. All the way back with the response
 - What model should I use?
-  - There can actually be 3 models being used (open models go brrrr):
+  - There can actually be 3 models being used (LLMs go brrrr):
     1. one for the embeddings
     2. other for the actual prompts
     3. a final one for evaluating the prompts of the previous (<a href="https://humornama.com/wp-content/uploads/2021/01/Obama-Awarding-Obama-meme-template.jpg">like this</a>)
