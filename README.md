@@ -11,8 +11,6 @@
   <p align="center">
     LLM tailored to <a href="https://tecnico.ulisboa.pt/en/">IST</a>
     <br />
-    <a href="https://istoresumido.axelamc.com"><strong>Check it out »</strong></a>
-    <br />
     <br />
     <a href="https://youtu.be/ow49a4tRq6Q">View Demo</a>
     &middot;
